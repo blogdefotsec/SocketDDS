@@ -22,7 +22,7 @@ class DDS_Client:
         }
         try:
             sock.sendto(json.dumps(json_data, ensure_ascii=False).encode('utf-8'), ('<broadcast>', self.port))
-            print(f"广播发送成功: {message}")
+            # print(f"broadcast successful: {message}")
         finally:
             sock.close()
 
@@ -45,7 +45,7 @@ class DDC_Subscriber:
                 json_data = json.loads(data.decode('utf-8'))
                 if json_data['topic'] == self.topic:
                     self.data = json_data['data']
-                    print(f"接收到数据: {self.data}")
+                    # print(f"Receive: {self.data}")
             except socket.error:
                 if not self.running:
                     break
